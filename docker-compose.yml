@@ -1,0 +1,12 @@
+version: '2.1'
+
+services:
+  greengrass:
+    build: .
+    privileged: true
+    network_mode: host
+    volumes:
+      - gg:/greengrass
+
+volumes:
+  gg:

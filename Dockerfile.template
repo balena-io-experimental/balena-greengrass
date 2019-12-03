@@ -1,0 +1,20 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian-python:3.7.4-stretch
+
+WORKDIR /usr/src
+COPY downloads downloads
+COPY start.sh .
+RUN chmod +x /usr/src/start.sh
+
+RUN adduser --system ggc_user
+RUN addgroup --system ggc_group
+
+RUN install_packages wget unzip binutils openjdk-8-jdk
+
+RUN tar -xzvf downloads/greengrass-linux-armv7l-1.10.0.tar.gz -C /
+RUN tar -xzvf downloads/35ac2e76c2-setup.tar.gz -C /greengrass
+RUN cd /greengrass/certs/ && wget -O root.ca.pem https://www.amazontrust.com/repository/AmazonRootCA1.pem
+RUN sed -i 's/"useSystemd" : "yes"/"useSystemd" : "no"/g' /greengrass/config/config.json 
+
+EXPOSE 8883
+
+CMD [ "/bin/bash", "/usr/src/start.sh"]

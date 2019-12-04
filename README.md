@@ -1,13 +1,13 @@
 # AWS IoT Greengrass (WIP)
 
-AWS IoT Greengrass integration with balenaOS.
+AWS IoT Greengrass integration with balenaOS. This project objective is to run Amazon's IoT Greengrass software on a docker container to enable running AWZ lambda functions on a balenaOS device.
 
 ## Current status
 This project is still a work in progress. 
 
 Currently this project is able to:
 - Install AWS Greengrass pre-requisites
-- Run AWS Greengrass daemon, able to sync over MQTT
+- Run AWS Greengrass daemon (able to sync over MQTT)
 
 AWS daemon crashes when receiving a lambda deployment. Further work is required in order to have a working MVP integration.
 
